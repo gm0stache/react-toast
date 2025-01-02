@@ -18,7 +18,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ type, message = "" }) {
+function Toast({ type = "notice", message = "" }) {
   const [isVisible, setIsVisible] = React.useState(true);
   if (!isVisible) {
     return null;
