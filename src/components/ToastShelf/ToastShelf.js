@@ -1,19 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import Toast from '../Toast';
-import styles from './ToastShelf.module.css';
+import Toast from "../Toast";
+import styles from "./ToastShelf.module.css";
 
-function ToastShelf() {
+function ToastShelf({ toasts }) {
   return (
     <ol className={styles.wrapper}>
-      <li className={styles.toastWrapper}>
-        <Toast variant="notice">Example notice toast</Toast>
-      </li>
-      <li className={styles.toastWrapper}>
-        <Toast variant="error">Example error toast</Toast>
-      </li>
+      {toasts.map((t) => {
+        return (
+          <li className={styles.toastWrapper} key={t.id}>
+            <Toast type={t.type} message={t.message} />
+          </li>
+        );
+      })}
     </ol>
   );
 }
 
-export default ToastShelf;
+export default React.memo(ToastShelf);
