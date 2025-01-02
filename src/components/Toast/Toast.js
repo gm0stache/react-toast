@@ -18,7 +18,12 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ type, message, onClose }) {
+function Toast({ type, message = "" }) {
+  const [isVisible, setIsVisible] = React.useState(true);
+  if (!isVisible) {
+    return null;
+  }
+
   const Tag = ICONS_BY_VARIANT[type];
 
   return (
@@ -27,7 +32,10 @@ function Toast({ type, message, onClose }) {
         <Tag size={24} />
       </div>
       <p className={styles.content}>{message}</p>
-      <button className={styles.closeButton} onClick={onClose}>
+      <button
+        className={styles.closeButton}
+        onClick={() => setIsVisible(false)}
+      >
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
